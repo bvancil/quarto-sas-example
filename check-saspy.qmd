@@ -1,0 +1,73 @@
+---
+title: "saspy test"
+format:
+    html:
+        code-fold: true
+jupyter: python3
+---
+
+```{python}
+from IPython.display import display, HTML
+import saspy
+saspy
+```
+
+```{python}
+def show(x):
+    display(HTML("<h6>Log</h6>"))
+    print(x['LOG'])
+    display(HTML("<h6>Output</h6>"))
+    display(HTML(x.get('LST', '')))
+```
+
+```{python}
+dir(saspy)
+```
+
+```{python}
+saspy.SAScfg
+```
+
+```{python}
+# sas = saspy.SASsession(cfgfile="./sascfg_personal.py", cfgname="local")
+sas = saspy.SASsession()
+```
+
+```{python}
+sas
+```
+
+```{python}
+dir(sas)
+```
+
+The following is a common dataset found in SAS documentation.
+
+```{python}
+results = sas.submit("""
+data BPressure;
+    length PatientID $2;
+    input PatientID $ Systolic Diastolic @@;
+    datalines;
+CK 120 50  SS 96  60 FR 100 70
+CP 120 75  BL 140 90 ES 120 70
+CP 165 110 JI 110 40 MC 119 66
+FC 125 76  RW 133 60 KD 108 54
+DS 110 50  JW 130 80 BH 120 65
+JW 134 80  SB 118 76 NS 122 78
+GS 122 70  AB 122 78 EC 112 62
+HH 122 82
+;
+
+title 'Systolic and Diastolic Blood Pressure';
+ods select BasicMeasures Quantiles;
+proc univariate data=BPressure;
+   var Systolic Diastolic;
+run;
+""")
+```
+
+```{python}
+show(results)
+```
+

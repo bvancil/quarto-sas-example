@@ -1,0 +1,38 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+ipykernel = "*"
+ipython = "*"
+jupyter = "*"
+jupyter-client = "==7.4.8"
+jupyterlab = "*"
+matplotlib = "*"
+notebook = "==6.5.2"
+numpy = "*"
+pandas = "*"
+pyzmq = "==24.0.1"
+sas_kernel = "*"
+saspy = "*"
+
+[dev-packages]
+black = "*"
+coverage = "*"
+doc8 = "*"
+docutils = "*"
+flake8 = "*"
+rst = "*"
+rstcheck = "*"
+ptpython = "*"
+pylint = "*"
+pytest = "*"
+sphinx-autobuild = "*"
+sphynx = "*"
+
+[requires]
+python_version = "3.10"
+
+[pipenv]
+allow_prereleases = true
